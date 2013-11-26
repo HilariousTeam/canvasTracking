@@ -1,0 +1,271 @@
+﻿@{  
+    ViewBag.Title = "Pocognoli";
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title></title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/normalize.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/build/mediaelementplayer.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")">
+
+    <script>
+        if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+            var viewportmeta = document.querySelector('meta[name="viewport"]');
+            if (viewportmeta) {
+                viewportmeta.content = 'width=device-width, initial-scale=1.0';
+                document.body.addEventListener('gesturestart', function () {
+                    viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
+                }, false);
+            }
+        }
+	    </script>
+
+    <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2.min.js")"></script>
+
+</head>
+<body>
+    <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+    <p>Pocognoli</p>
+
+    <canvas id="myCanvas" width="502" height="282"></canvas>
+    <section id='cuePlayer'>
+        
+        <video id="video" width="502" height="282" poster="@Url.Content("~/Content/img/poster_poco.jpg")" preload="none" webkit-playsinline>
+            <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+            
+            <source src="@Url.Content("~/Content/video/Pocognoli_502x282.mov")" type="video/mov" />
+            <!-- Flash fallback for non-HTML5 browsers without JavaScript -->
+            <object width="320" height="240" type="application/x-shockwave-flash" data="flashmediaelement.swf">
+                <param name="movie" value="flashmediaelement.swf" />
+                <param name="flashvars" value="controls=true&file=myvideo.mp4" />
+                <!-- Image as a last resort -->
+                <img src="myvideo.jpg" width="320" height="240" title="No video playback capabilities" />
+            </object>           
+        </video>  
+               
+    </section>
+
+       
+
+    <script>
+
+
+
+        var points = [{ "x": 207.199, "y": 189.87 },
+{ "x": 207.031, "y": 188.595 },
+{ "x": 206.863, "y": 189.317 },
+{ "x": 206.804, "y": 187.629 },
+{ "x": 206.749, "y": 187.942 },
+{ "x": 206.571, "y": 186.632 },
+{ "x": 206.392, "y": 187.321 },
+{ "x": 206.291, "y": 186.027 },
+{ "x": 206.191, "y": 186.733 },
+{ "x": 206.131, "y": 185.32 },
+{ "x": 206.071, "y": 185.906 },
+{ "x": 205.962, "y": 184.303 },
+{ "x": 205.852, "y": 184.7 },
+{ "x": 205.785, "y": 182.704 },
+{ "x": 205.715, "y": 182.706 },
+{ "x": 205.572, "y": 180.898 },
+{ "x": 205.427, "y": 181.089 },
+{ "x": 205.295, "y": 179.1 },
+{ "x": 205.159, "y": 179.11 },
+{ "x": 204.883, "y": 177.575 },
+{ "x": 204.605, "y": 178.039 },
+{ "x": 204.373, "y": 176.849 },
+{ "x": 204.142, "y": 177.659 },
+{ "x": 203.909, "y": 176.718 },
+{ "x": 203.676, "y": 177.778 },
+{ "x": 203.555, "y": 177.154 },
+{ "x": 203.434, "y": 178.531 },
+{ "x": 203.419, "y": 178.092 },
+{ "x": 203.404, "y": 179.654 },
+{ "x": 203.383, "y": 179.165 },
+{ "x": 203.362, "y": 180.678 },
+{ "x": 203.233, "y": 179.893 },
+{ "x": 203.105, "y": 181.108 },
+{ "x": 203.154, "y": 180.179 },
+{ "x": 203.204, "y": 181.249 },
+{ "x": 203.3, "y": 180.067 },
+{ "x": 203.397, "y": 180.885 },
+{ "x": 203.497, "y": 179.564 },
+{ "x": 203.598, "y": 180.244 },
+{ "x": 203.868, "y": 179.012 },
+{ "x": 204.138, "y": 179.78 },
+{ "x": 204.379, "y": 178.723 },
+{ "x": 204.619, "y": 179.665 },
+{ "x": 204.681, "y": 178.688 },
+{ "x": 204.744, "y": 179.712 },
+{ "x": 204.824, "y": 178.762 },
+{ "x": 204.904, "y": 179.812 },
+{ "x": 205.097, "y": 178.8 },
+{ "x": 205.289, "y": 179.788 },
+{ "x": 205.539, "y": 178.999 },
+{ "x": 205.788, "y": 180.211 },
+{ "x": 206.095, "y": 179.352 },
+{ "x": 206.403, "y": 180.493 },
+{ "x": 206.567, "y": 179.537 },
+{ "x": 206.731, "y": 180.581 },
+{ "x": 206.886, "y": 179.701 },
+{ "x": 207.041, "y": 180.822 },
+{ "x": 207.16, "y": 179.947 },
+{ "x": 207.28, "y": 181.072 },
+{ "x": 207.375, "y": 180.177 },
+{ "x": 207.47, "y": 181.282 },
+{ "x": 207.376, "y": 180.423 },
+{ "x": 207.282, "y": 181.564 },
+{ "x": 207.173, "y": 180.664 },
+{ "x": 207.064, "y": 181.764 },
+{ "x": 206.962, "y": 180.756 },
+{ "x": 206.86, "y": 181.747 },
+{ "x": 206.686, "y": 180.764 },
+{ "x": 206.512, "y": 181.781 },
+{ "x": 206.456, "y": 180.584 },
+{ "x": 206.4, "y": 181.387 },
+{ "x": 206.128, "y": 180.137 },
+{ "x": 205.855, "y": 180.886 },
+{ "x": 205.722, "y": 179.442 },
+{ "x": 205.589, "y": 179.998 },
+{ "x": 205.526, "y": 178.414 },
+{ "x": 205.463, "y": 178.831 },
+{ "x": 205.257, "y": 177.224 },
+{ "x": 205.05, "y": 177.618 },
+{ "x": 204.798, "y": 176.413 },
+{ "x": 204.546, "y": 177.207 },
+{ "x": 204.264, "y": 175.886 },
+{ "x": 203.984, "y": 176.564 },
+{ "x": 203.777, "y": 175.339 },
+{ "x": 203.572, "y": 176.113 },
+{ "x": 203.361, "y": 175.102 },
+{ "x": 203.151, "y": 176.091 },
+{ "x": 203.05, "y": 175.438 },
+{ "x": 202.949, "y": 176.785 },
+{ "x": 202.816, "y": 175.9 },
+{ "x": 202.683, "y": 177.015 },
+{ "x": 202.505, "y": 176.231 },
+{ "x": 202.327, "y": 177.447 },
+{ "x": 202.259, "y": 176.633 },
+{ "x": 202.191, "y": 177.819 },
+{ "x": 202.142, "y": 176.502 },
+{ "x": 202.092, "y": 177.185 },
+{ "x": 202.2, "y": 175.595 },
+{ "x": 202.309, "y": 176.004 },
+{ "x": 202.427, "y": 174.124 },
+{ "x": 202.545, "y": 174.244 },
+{ "x": 202.774, "y": 172.406 },
+{ "x": 203.003, "y": 172.567 },
+{ "x": 202.993, "y": 171.359 },
+{ "x": 202.982, "y": 172.151 },
+{ "x": 203.145, "y": 170.977 },
+{ "x": 203.308, "y": 171.802 },
+{ "x": 203.49, "y": 170.882 },
+{ "x": 203.671, "y": 171.963 },
+{ "x": 203.82, "y": 171.214 },
+{ "x": 203.97, "y": 172.465 },
+{ "x": 204.073, "y": 171.843 },
+{ "x": 204.173, "y": 173.222 },
+{ "x": 204.395, "y": 172.716 },
+{ "x": 204.616, "y": 174.211 },
+{ "x": 204.573, "y": 173.672 },
+{ "x": 204.53, "y": 175.132 },
+{ "x": 204.541, "y": 174.597 },
+{ "x": 204.552, "y": 176.061 },
+{ "x": 204.553, "y": 175.328 },
+{ "x": 204.555, "y": 176.594 },
+{ "x": 204.498, "y": 175.731 },
+{ "x": 204.442, "y": 176.867 },
+{ "x": 204.459, "y": 175.973 },
+{ "x": 204.476, "y": 177.079 },
+{ "x": 204.461, "y": 176.052 },
+{ "x": 204.445, "y": 177.025 },
+{ "x": 204.34, "y": 175.984 },
+{ "x": 204.235, "y": 176.942 },
+{ "x": 204.107, "y": 175.83 },
+{ "x": 203.979, "y": 176.718 },
+{ "x": 203.947, "y": 175.567 },
+{ "x": 203.916, "y": 176.416 },
+{ "x": 203.756, "y": 175.429 },
+{ "x": 203.596, "y": 176.443 },
+{ "x": 203.533, "y": 175.47 },
+{ "x": 203.471, "y": 176.498 },
+{ "x": 203.479, "y": 175.581 },
+{ "x": 203.488, "y": 176.664 },
+{ "x": 203.352, "y": 175.731 },
+{ "x": 203.216, "y": 176.798 },
+{ "x": 203.167, "y": 175.945 },
+{ "x": 203.118, "y": 177.092 },
+{ "x": 203.101, "y": 176.232 },
+{ "x": 203.084, "y": 177.371 },
+{ "x": 203.023, "y": 176.584 },
+{ "x": 202.961, "y": 177.797 },
+{ "x": 202.95, "y": 176.945 },
+{ "x": 202.939, "y": 178.094 },
+{ "x": 202.846, "y": 177.16 },
+{ "x": 202.753, "y": 178.226 },
+{ "x": 202.781, "y": 177.279 },
+{ "x": 202.808, "y": 178.331 },
+{ "x": 202.864, "y": 177.285 },
+{ "x": 202.921, "y": 178.238 },
+{ "x": 202.941, "y": 177.189 },
+{ "x": 202.962, "y": 178.14 },
+{ "x": 202.815, "y": 177.13 },
+{ "x": 202.669, "y": 178.121 },
+{ "x": 202.558, "y": 177.098 },
+{ "x": 202.449, "y": 178.075 },
+{ "x": 202.406, "y": 177.12 },
+{ "x": 202.364, "y": 178.166 },
+{ "x": 202.361, "y": 177.115 },
+{ "x": 202.358, "y": 178.064 },
+{ "x": 202.493, "y": 177.036 },
+{ "x": 202.628, "y": 178.007 },
+{ "x": 202.581, "y": 176.982 },
+{ "x": 202.534, "y": 177.956 }];
+
+
+        var canvas = document.getElementsByTagName("canvas")[0]; //get the canvas dom object
+        var ctx = canvas.getContext("2d"); //get the context
+
+        ctx.fillStyle = "none";
+        ctx.font = 'bold 17px helvetica_neue_lt_std97BlkCn';
+        ctx.fillStyle = '#e8d12e';
+              
+
+        document.getElementById('cuePlayer').addEventListener('click', function(){
+        
+        canvas.style.zIndex = "500";
+
+        var messageText = '@TempData["messageText"]';
+        var messageName = '@TempData["messageName"]';
+
+            var index = 0;
+        
+           function move() {
+           ctx.clearRect(0, 0, canvas.width, canvas.height);
+           ctx.fillText(messageText, points[index].x-20, points[index].y+40);
+           ctx.fillText(messageName, points[index].x+5, points[index].y+65);
+           index++;
+        }
+
+        setInterval(move, 40);
+
+        });
+
+
+        </script>
+</body>
+</html>
